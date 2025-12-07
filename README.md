@@ -47,6 +47,18 @@ The notes in this repository were validated on the following system:
 
 If you have similar hardware, the configurations and workarounds described here should work for you. Your mileage may vary with different GPU generations (especially different gfx versions).
 
+## Core Approach
+
+The core approach that I have come to favor and describe in these notes is a layering approach using Docker (this can also be achieved using Conda ).
+
+Essentially it entails:
+
+- ROCM and Pytroch is the foundation. If you are not constrained by storage space, you can keep several of these with different versions of Python. If you are more storage constrained then you can create just one verified base image.  
+- Upon this foundation build stacks that layer the dependencies for the individual services on top of that stable core. Sometimes this works without great effort. In other cases, a little bit of tweaking is required in order to get the additional services to work with the Python version in your base. If you want to avoid that work, this is why having several stable course can be advantageous. 
+
+![alt text](images/banner-layered-docker.png)
+
+
 ## Key Takeaways
 
 - **Vulkan** is often easier than ROCm for audio/speech workloads
